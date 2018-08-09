@@ -2,7 +2,7 @@
 
 [Fluentd](https://fluentd.org/) input plugin to do something.
 
-TODO: write description for you plugin.
+* in_http plugin for including time tag in record in case of post multiple records. 
 
 ## Installation
 
@@ -12,29 +12,30 @@ TODO: write description for you plugin.
 $ gem install fluent-plugin-http-include-time-key
 ```
 
-### Bundler
-
-Add following line to your Gemfile:
-
-```ruby
-gem "fluent-plugin-http-include-time-key"
-```
-
-And then execute:
+## Config
 
 ```
-$ bundle
+<source>
+  @id source-http
+  @type http_include_time_key
+  port 9880
+  bind 0.0.0.0
+  body_size_limit 32m
+  keepalive_timeout 10s
+  add_remote_addr true
+  time_key fluent_time
+  time_format %Y-%m-%d %H:%M:%S.%L
+  keep_time_key true
+</source>
 ```
 
-## Configuration
+## Usage
 
-You can generate configuration template:
 
 ```
-$ fluent-plugin-config-format input http_include_time_key
-```
+$ curl -X POST -d 'json=[{"message":"TEST","time":"2018-08-09 17:00:00"},{"message":"TEST2","time":"2018-08-09 17:10:00"}]' http://localhost:9880/tag.sample -v
 
-You can copy and paste generated documents here.
+```
 
 ## Copyright
 
