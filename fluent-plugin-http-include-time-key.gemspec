@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.email   = ["k63207@gmail.com"]
 
   spec.summary       = %q{in_http plugin for including time tag in record in case of post multiple records.}
-  spec.description   = %q{override the standard in_http plugin.}
+  spec.description   = %q{in_http plugin for including time tag in record in case of post multiple records.}
   spec.homepage      = "https://github.com/k63207/fluent-plugin-http-include-time-key"
   spec.license       = "Apache-2.0"
 
